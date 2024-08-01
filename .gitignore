@@ -1,8 +1,8 @@
 # Code
 airflow-volumes/config/*
 airflow-volumes/logs/*
-mongodb-volume
-postgresql-volumne
+mongodb-volume/
+postgresql-volumne/
 airflow-volumes/plugins/*
 __pycache__/
 *.pyc
