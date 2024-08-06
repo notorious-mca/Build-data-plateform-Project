@@ -21,3 +21,8 @@ desktop.ini
 .Spotlight-V100
 .Trashes
 ._*
+
+# Terraform files
+.terraform
+*.lock
+*.hcl
