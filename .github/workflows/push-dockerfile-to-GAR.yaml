@@ -22,6 +22,7 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   GAR_LOCATION: ${{ secrets.GAR_LOCATION }} # TODO: update region of the Artifact Registry
   REPOSITORY: ${{ secrets.GAR_REPOSITORY }} # TODO: update to Artifact Registry docker repository
+  SERVICE_ACCOUNT_EMAIL: ${{ secrets.GCP_SA_EMAIL }} # TODO: update to service account email
   IMAGE: dagster-docker-image
 
 jobs:
@@ -66,5 +67,9 @@ jobs:
           .
     # Push the Docker image to Google Artifact Registry
     - name: Publish
+      run: |-
+        gcloud projects add-iam-policy-binding PROJECT_ID \
+          --member="serviceAccount:SERVICE_ACCOUNT_EMAIL" \
+          --role="roles/artifactregistry.writer"
       run: |-
         docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
