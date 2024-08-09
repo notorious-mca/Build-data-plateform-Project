@@ -48,12 +48,6 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCP_SA_CREDENTIALS }}'
 
-    - name: Configure role for image pushing in Artifact Registry
-      run: |-
-        gcloud projects add-iam-policy-binding PROJECT_ID \
-          --member="data-platform-account-service:SERVICE_ACCOUNT_EMAIL" \
-          --role="roles/artifactregistry.writer"
-
     # Docker configuration for Google Artifact Registry
     - name: Configure docker to use the Google Artifact Registry
       run: |
