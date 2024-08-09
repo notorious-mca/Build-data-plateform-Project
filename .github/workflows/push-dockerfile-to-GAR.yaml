@@ -51,7 +51,7 @@ jobs:
     - name: Configure role for image pushing in Artifact Registry
       run: |-
         gcloud projects add-iam-policy-binding PROJECT_ID \
-          --member="serviceAccount:SERVICE_ACCOUNT_EMAIL" \
+          --member="data-platform-account-service:SERVICE_ACCOUNT_EMAIL" \
           --role="roles/artifactregistry.writer"
 
     # Docker configuration for Google Artifact Registry
