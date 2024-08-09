@@ -24,6 +24,9 @@ tf-destroy: ## Destroy the infrastructures with Terraform
 	terraform -chdir="./IaC/" destroy
 
 init: ## Initialize the project
+	@echo "Installation des dépendances"
+	@chmod u+x ./config/install-dependencies.sh
+	@./config/install-dependencies.sh
 	@echo "Création du fichier terraform.tfvars"
 	@touch ./IaC/terraform.tfvars
 	@echo "OK"
