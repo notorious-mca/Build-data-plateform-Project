@@ -50,7 +50,7 @@ jobs:
     # Docker configuration for Google Artifact Registry
     - name: Configure docker to use the Google Artifact Registry
       run: |
-        gcloud auth configure-docker REGION-docker.pkg.dev
+        gcloud auth configure-docker $GAR_LOCATION-docker.pkg.dev
 
     # Set up Docker Buildx for multi-platform builds
     - name: Set up Docker Buildx
@@ -63,7 +63,7 @@ jobs:
           --tag "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
-          .
+          ./Dockerfile.dagster
     # Push the Docker image to Google Artifact Registry
     - name: Publish
       run: |-
